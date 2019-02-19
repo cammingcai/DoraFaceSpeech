@@ -1,0 +1,48 @@
+<resources>
+    <string name="app_name">Baidu-IDL-FaceSDK</string>
+    <string name="detect_no_face">未检测到人脸</string>
+    <string name="detect_face_in">把脸移入框内</string>
+    <string name="detect_zoom_in">手机拿近一点</string>
+    <string name="detect_zoom_out">手机拿远一点</string>
+    <string name="detect_head_up">建议略微抬头</string>
+    <string name="detect_head_down">建议略微低头</string>
+    <string name="detect_head_left">建议略微向左转头</string>
+    <string name="detect_head_right">建议略微向右转头</string>
+    <string name="detect_occ_face">脸部有遮挡</string>
+    <string name="detect_occ_left_eye">左眼有遮挡</string>
+    <string name="detect_occ_right_eye">右眼有遮挡</string>
+    <string name="detect_occ_mouth">嘴巴有遮挡</string>
+    <string name="detect_low_light">光线再亮些</string>
+    <string name="detect_keep">请保持不动</string>
+    <string name="detect_standard">请正对手机</string>
+    <string name="detect_timeout">检测超时</string>
+    <string name="liveness_eye">眨眨眼</string>
+    <string name="liveness_eye_left">请眨眨左边眼睛</string>
+    <string name="liveness_eye_right">请眨眨右边眼睛</string>
+    <string name="liveness_mouth">张张嘴</string>
+    <string name="liveness_head_left">向左缓慢转头</string>
+    <string name="liveness_head_right">向右缓慢转头</string>
+    <string name="liveness_head_left_right">摇摇头</string>
+    <string name="liveness_head_up">缓慢抬头</string>
+    <string name="liveness_head_down">缓慢低头</string>
+    <string name="liveness_good">非常好</string>
+    <string name="liveness_sjx">三角形是由三条线段顺次首尾相连，组成的一个闭合的平面图形，是最基本的多边形。\n
+        一般用大写英语字母为顶点标号，用小写英语字母表示边，用阿拉伯数字表示角。\n
+        三角形分为锐角三角形、直角三角形和钝角三角形，三角形的面积公式就是底乘以底边对应的高除以2,\n
+在同一平面内，由不在同一条直线的三条线段首尾相接所得的封闭图形。\n
+
+三角形三个内角的和等于180度。\n
+
+三角形任何两边的和大于第三边。\n
+
+三角形任意两边之差小于第三边。\n
+
+三角形的外角等于与它不相邻的两个内角的和。\n
+        a.锐角三角形：三个角都小于90度。\n
+b.直角三角形：简称Rt（Right triangle）△，其中一个角等于90度。\n
+c.钝角三角形：其中一个角一定大于90度，钝角大于九十度且小于一百八十度。\n
+不等边三角形：3条边都不相等。\n
+等腰三角形：有2条边相等。\n
+等边三角形：3条边都相等。\n
+其中锐角三角形和钝角三角形统称为斜三角形。\n</string>
+</resources>
