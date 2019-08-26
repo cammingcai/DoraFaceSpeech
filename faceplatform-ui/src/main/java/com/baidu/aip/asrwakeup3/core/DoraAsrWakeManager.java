@@ -1,8 +1,12 @@
 package com.baidu.aip.asrwakeup3.core;
 
 import android.app.Activity;
+import android.content.pm.PackageManager;
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 
 import com.baidu.aip.asrwakeup3.core.wakeup.IWakeupListener;
@@ -11,13 +15,15 @@ import com.baidu.aip.asrwakeup3.core.wakeup.WakeupEventAdapter;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by camming on 2019\1\30 0030.
  * code is data  data is code
  */
 
-public class DoraAsrWakeManager {
+public class DoraAsrWakeManager extends Activity{
 
 
     /**
@@ -196,4 +202,60 @@ public class DoraAsrWakeManager {
                 break;
         }
     }
+
+
+    /**
+     * 申请运行时权限
+     */
+    public void requestRuntimePermission(String permissions) {
+        List<String> permissionList = new ArrayList<>();
+        // for (String permission : permissions) {
+        if (ContextCompat.checkSelfPermission(this, permissions) != PackageManager.PERMISSION_GRANTED) {
+            permissionList.add(permissions);
+        }
+        //   }
+
+        if (!permissionList.isEmpty()) {
+            ActivityCompat.requestPermissions(this, permissionList.toArray(new String[permissionList.size()]), 1);
+        } else {
+            permissionListener.onGranted();
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case 1:
+                if (grantResults.length > 0) {
+                    List<String> deniedPermissions = new ArrayList<>();
+                    for (int i = 0; i < grantResults.length; i++) {
+                        int grantResult = grantResults[i];
+                        String permission = permissions[i];
+                        //还没有权限啊
+                        if (grantResult != PackageManager.PERMISSION_GRANTED) {
+                            deniedPermissions.add(permission);
+                        }
+                    }
+                    if (deniedPermissions.isEmpty()) {
+                        permissionListener.onGranted();
+                    } else {
+                        permissionListener.onDenied(deniedPermissions);
+                    }
+                }
+                break;
+        }
+    }
+
+    PermissionListener permissionListener = new PermissionListener() {
+        @Override
+        public void onGranted() {
+            callUnity("UnityAndroidCommunicationObj","permissStatus", "true");
+        }
+
+        @Override
+        public void onDenied(List<String> deniedPermissions) {
+            callUnity("UnityAndroidCommunicationObj","permissStatus", deniedPermissions.toString());
+        }
+    };
 }

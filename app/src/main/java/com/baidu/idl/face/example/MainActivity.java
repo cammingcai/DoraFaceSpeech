@@ -107,15 +107,15 @@ public class MainActivity extends Activity {
 //            }
 //        });
 
-        DoraAndroidToUnityManager  manager =
-                new DoraAndroidToUnityManager();
-        manager.initFaceLiveness(this);
+//        DoraAndroidToUnityManager  manager =
+//                new DoraAndroidToUnityManager();
+//        manager.initFaceLiveness(this);
+//
+//        manager.showFace(this);
 
-        manager.showFace(this);
 
-
-//        BaiduAsrUtils.getInstall().initAsr(this,myAsrHandler);
-//        BaiduAsrUtils.getInstall().startAsr();
+        BaiduAsrUtils.getInstall().initAsr(this,myAsrHandler);
+        BaiduAsrUtils.getInstall().startAsr();
 
     }
     /**

@@ -9,7 +9,9 @@ android {
         targetSdkVersion 25
         versionCode 1
         versionName "3.3.0.0"
-
+        ndk {
+            abiFilters 'armeabi', 'armeabi-v7a', 'x86'
+        }
     }
     signingConfigs {
 

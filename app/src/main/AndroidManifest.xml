@@ -67,6 +67,18 @@
             android:launchMode="singleTop"
             android:screenOrientation="sensor"
             android:theme="@style/Theme_NoTitle" />
+
+        <!--<meta-data
+            android:name="com.baidu.speech.APP_ID"
+            android:value="15452096"/>
+        <meta-data
+            android:name="com.baidu.speech.API_KEY"
+            android:value="aW9kDk3yc9SgCoZ6Sbqp0HEd"/>
+        <meta-data
+            android:name="com.baidu.speech.SECRET_KEY"
+            android:value="10i8MD4L0OsBHbRszceNYG6xqFK71K7U "/>
+
+        <service android:name="com.baidu.speech.VoiceRecognitionService" android:exported="false"/>-->
     </application>
 
 </manifest>
