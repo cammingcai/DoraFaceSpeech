@@ -17,6 +17,7 @@ import android.view.Gravity;
 import android.view.Surface;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
@@ -78,21 +79,35 @@ public class MyDialog1 extends Dialog implements
     public int mPreviewDegree;
 
 
-
     Bitmap image;
-
 
     private FaceDetectRoundView faceDetectRoundView;
 
     private IFaceListener faceListener;
     private RelativeLayout rootRl;
 
+    public  float SURFACE_RATIO = .3f;//显示区域的大小 比例
+
+    private int directionX ;
+    private int directionY;
+
+    private int faceX  ;
+    private int faceY ;
+
+    private RelativeLayout faceRootRl;
+
    // private int[] listenedItem;//监听的控件id
-    public MyDialog1(Context context,int layoutResID){
+    public MyDialog1(Context context,int x,int y,int facex,int facey,int layoutResID){
         super(context, R.style.MyDialog);//加载dialog的样式
         this.context = context;
         this.layoutResID = layoutResID;
+        this.directionX = x;
+        this.directionY = y;
+        this.faceX = facex;
+        this.faceY = facey;
     }
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,13 +115,15 @@ public class MyDialog1 extends Dialog implements
         super.onCreate(savedInstanceState);
         //提前设置Dialog的一些样式
         Window dialogWindow = getWindow();
-        dialogWindow.setGravity(Gravity.TOP | Gravity.RIGHT);
+        dialogWindow.setGravity(Gravity.LEFT |Gravity.TOP);
        // dialogWindow.setWindowAnimations();
         setContentView(layoutResID);
         DisplayMetrics dm = new DisplayMetrics();
         WindowManager windowManager = ((Activity)context).getWindowManager();
 
         WindowManager.LayoutParams attributesParams = dialogWindow.getAttributes();
+        attributesParams.x = directionX;
+        attributesParams.y = directionY;
         attributesParams.flags = WindowManager.LayoutParams.FLAG_DIM_BEHIND|WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
         attributesParams.dimAmount = 0.0f;//设置遮罩透明度
 
@@ -118,12 +135,25 @@ public class MyDialog1 extends Dialog implements
         //initFaceLiveness();
 
 
+        faceRootRl = (RelativeLayout)findViewById(R.id.liveness_root_layout);
+
+        if(faceX!=0||faceY!=0){
+            ViewGroup.LayoutParams params = faceRootRl.getLayoutParams();
+            params.width = faceX;
+            params.height = faceY;
+            faceRootRl.setLayoutParams(params);
+        }
+
+
         rootRl = (RelativeLayout) findViewById(R.id.rl_face_check);
 
-        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(mDisplayWidth/3,mDisplayWidth/3);
-        rootRl.setLayoutParams(params);
+
+//        rootRl.setLayoutParams(params);
 
         mFrameLayout = (FrameLayout) findViewById(R.id.liveness_surface_layout);
+//        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(200,200);
+//        mFrameLayout.setLayoutParams(params);
+
         faceDetectRoundView  = (FaceDetectRoundView) findViewById(R.id.liveness_face_round);
 
         FaceSDKResSettings.initializeResId();
@@ -137,7 +167,7 @@ public class MyDialog1 extends Dialog implements
 
 
         FrameLayout.LayoutParams cameraFL = new FrameLayout.LayoutParams(
-                (int) (mDisplayWidth* FaceDetectRoundView.SURFACE_RATIO), (int) (mDisplayHeight * FaceDetectRoundView.SURFACE_RATIO),
+                (int) (mDisplayWidth* SURFACE_RATIO), (int) (mDisplayHeight * SURFACE_RATIO),
                 Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
         Log.i(TAG,"mFrameLayout.getWidth()="+mFrameLayout.getWidth());
         Log.i(TAG,"mFrameLayout.getHeight()="+mFrameLayout.getHeight());

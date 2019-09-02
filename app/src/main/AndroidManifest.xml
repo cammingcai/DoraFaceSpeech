@@ -40,7 +40,7 @@
         <activity
             android:name="com.baidu.idl.face.example.MainActivity"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"
+            android:screenOrientation="landscape"
             android:theme="@style/Theme_NoTitle">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -59,7 +59,7 @@
             android:name="com.baidu.idl.face.example.FaceDetectExpActivity"
             android:hardwareAccelerated="true"
             android:launchMode="singleTop"
-            android:screenOrientation="sensor"
+            android:screenOrientation="landscape"
             android:theme="@style/Theme_NoTitle" />
         <!-- 设置相关 -->
         <activity

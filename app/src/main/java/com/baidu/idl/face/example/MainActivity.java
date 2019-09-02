@@ -57,6 +57,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        initFaceLiveness();
         // 根据需求添加活体动作
         ExampleApplication.livenessList.clear();
         ExampleApplication.livenessList.add(LivenessTypeEnum.Eye);
@@ -91,12 +92,12 @@ public class MainActivity extends Activity {
         requestPermissions(99, Manifest.permission.CAMERA);
 
 
+        dialog = new MyDialog1(MainActivity.this,0,0,0,0,R.layout.activity_face_liveness_v3100);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.setCancelable(false);
+        dialog.show();
 
 
-//        dialog = new MyDialog1(this,R.layout.activity_face_liveness_v3100);
-//        dialog.setCanceledOnTouchOutside(false);
-//        dialog.setCancelable(false);
-//        dialog.show();
 //
 //        dialog.setFaceListener(new IFaceListener() {
 //            @SuppressLint("LongLogTag")
@@ -114,8 +115,8 @@ public class MainActivity extends Activity {
 //        manager.showFace(this);
 
 
-        BaiduAsrUtils.getInstall().initAsr(this,myAsrHandler);
-        BaiduAsrUtils.getInstall().startAsr();
+//        BaiduAsrUtils.getInstall().initAsr(this,myAsrHandler);
+//        BaiduAsrUtils.getInstall().startAsr();
 
     }
     /**
@@ -279,6 +280,10 @@ public class MainActivity extends Activity {
                 public void onClick(View v) {
                     switch (itemDataSet[position]) {
                         case R.string.main_item_face_live:
+//                                    dialog = new MyDialog1(MainActivity.this,R.layout.activity_face_liveness_v3100);
+//                                    dialog.setCanceledOnTouchOutside(false);
+//                                    dialog.setCancelable(false);
+//                                    dialog.show();
                             Toast.makeText(MainActivity.this,"活体检测",Toast.LENGTH_SHORT).show();
                            // startItemActivity(FaceLivenessExpActivity.class);
                             break;

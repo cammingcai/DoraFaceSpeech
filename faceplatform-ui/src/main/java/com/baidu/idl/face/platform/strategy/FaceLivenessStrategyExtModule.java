@@ -60,7 +60,7 @@ public final class FaceLivenessStrategyExtModule extends FaceStrategyModule impl
     public FaceLivenessStrategyExtModule(Context context, FaceTracker tracker) {
         super(tracker);
 
-        LogHelper.addLog(ConstantHelper.LOG_APPID, context.getPackageName());
+//        LogHelper.addLog(ConstantHelper.LOG_APPID, context.getPackageName());
 
         mContext = context;
         mDetectStrategy = new DetectStrategy();

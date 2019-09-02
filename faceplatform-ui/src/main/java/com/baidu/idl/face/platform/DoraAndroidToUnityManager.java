@@ -135,10 +135,11 @@ public class DoraAndroidToUnityManager {
     /**
      * 显示人脸显示框
      * */
-    public void showFace(){
+    public void showFace(int x,int y,int facex,int facey){
 
         if(dialog==null)
-            dialog = new MyDialog1(getActivity(), R.layout.activity_face_liveness_v3100);
+            dialog = new MyDialog1(getActivity(),x,y ,facex,facey,R.layout.activity_face_liveness_v3100);
+//            dialog = new MyDialog1(getActivity(), R.layout.activity_face_liveness_v3100);
         dialog.mIsCompletion = false;
         dialog.setCanceledOnTouchOutside(false);
         dialog.show();
@@ -149,6 +150,27 @@ public class DoraAndroidToUnityManager {
             public void faceResult(String status,String result) {
                 Log.i("DoraAndroidToUnityManager","DoraAndroidToUnityManager status="+status.toString()+",message="+result);
                // callUnity("UnityAndroidCommunicationObj","AndroidCallUnityCB", status+","+result);
+                callUnity("UnityAndroidCommunicationObj","AndroidCallUnityCB", status+","+result);
+            }
+        });
+
+    }
+
+    public void showFace(){
+
+        if(dialog==null)
+            dialog = new MyDialog1(getActivity(),0,0,0,0,R.layout.activity_face_liveness_v3100);
+//            dialog = new MyDialog1(getActivity(), R.layout.activity_face_liveness_v3100);
+        dialog.mIsCompletion = false;
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.show();
+
+        dialog.setFaceListener(new IFaceListener() {
+            @SuppressLint("LongLogTag")
+            @Override
+            public void faceResult(String status,String result) {
+                Log.i("DoraAndroidToUnityManager","DoraAndroidToUnityManager status="+status.toString()+",message="+result);
+                // callUnity("UnityAndroidCommunicationObj","AndroidCallUnityCB", status+","+result);
                 callUnity("UnityAndroidCommunicationObj","AndroidCallUnityCB", status+","+result);
             }
         });
